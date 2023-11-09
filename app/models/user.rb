@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def password_required?
     false
   end
+
+  def generate_login_token!
+    update_column(:login_token, SecureRandom.uuid)
+  end
 end
