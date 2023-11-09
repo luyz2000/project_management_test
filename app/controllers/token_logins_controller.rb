@@ -8,7 +8,7 @@ class TokenLoginsController < ApplicationController
     if user
       bypass_sign_in(user)
       user.update_column(:login_token, nil)
-      redirect_to users_path, notice: 'Logged in successfully!'
+      redirect_to root_path, notice: 'Logged in successfully!'
     else
       redirect_to new_token_login_path, alert: 'The link you used was invalid. Please request a new login link'
     end

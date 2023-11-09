@@ -10,8 +10,8 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <% if user_signed_in? %>
-        <li><a href="#" class="nav-link px-2">Usuarios</a></li>
-        <li><a href="#" class="nav-link px-2">Proyectos</a></li>
+
+        <li><%= link_to "Proyectos", proyects_path, class: "nav-link px-2" %></li>
       <% else %>
         <li><%= link_to "Inicio", root_path, class: "nav-link px-2" %></li>
       <% end %>
