@@ -3,7 +3,7 @@ class ProyectsController < ApplicationController
 
   # GET /proyects or /proyects.json
   def index
-    @proyects = Proyect.all
+    @proyects = current_user.proyects
   end
 
   # GET /proyects/1 or /proyects/1.json
@@ -25,6 +25,7 @@ class ProyectsController < ApplicationController
 
     respond_to do |format|
       if @proyect.save
+        set_owner
         format.html { redirect_to proyect_url(@proyect), notice: "Proyect was successfully created." }
         format.json { render :show, status: :created, location: @proyect }
       else
@@ -60,11 +61,15 @@ class ProyectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proyect
-      @proyect = Proyect.find(params[:id])
+      @proyect = Proyect.includes(proyect_users: :user).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def proyect_params
       params.require(:proyect).permit(:title, :slug, :description, :status)
+    end
+
+    def set_owner
+      ProyectUser.create(proyect: @proyect, user: current_user, role: :owner)
     end
 end

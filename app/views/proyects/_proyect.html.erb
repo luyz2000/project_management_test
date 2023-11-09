@@ -19,4 +19,14 @@
     <%= proyect.status %>
   </p>
 
+  <p>
+    <strong>Users:</strong>
+    <% proyect.proyect_users.each do |proyect_user| %>
+      <div class="d-block">
+        <%= proyect_user.user.email %>
+        <%= proyect_user.role %>
+      </div>
+    <% end %>
+  </p>
+
 </div>
