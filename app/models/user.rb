@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # with this we can login and register users withount password(project requirement)
   def password_required?
     false
   end
