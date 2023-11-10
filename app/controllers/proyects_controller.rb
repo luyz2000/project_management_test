@@ -61,7 +61,7 @@ class ProyectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proyect
-      @proyect = Proyect.includes(proyect_users: :user).find(params[:id])
+      @proyect = current_user.proyects.includes(proyect_users: :user).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
