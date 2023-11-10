@@ -8,9 +8,9 @@ class TokenLoginsController < ApplicationController
     if user
       bypass_sign_in(user)
       user.update_column(:login_token, nil)
-      redirect_to root_path, notice: 'Logged in successfully!'
+      redirect_to root_path, notice: 'Has iniciado sesion correctamente'
     else
-      redirect_to new_token_login_path, alert: 'The link you used was invalid. Please request a new login link'
+      redirect_to new_token_login_path, alert: 'El enlace que usaste es invalido, por favor solicita un nuevo enlace de inicio de sesion'
     end
   end
 
@@ -22,9 +22,9 @@ class TokenLoginsController < ApplicationController
     if user
       user.generate_login_token!
       send_token_email(user)
-      redirect_to(new_token_login_path, notice: 'Please check your inbox')
+      redirect_to(new_token_login_path, notice: 'Por favor revisa tu bandeja de entrada')
     else
-      redirect_to(new_token_login_path, alert: 'It looks like that email is not registered')
+      redirect_to(new_token_login_path, alert: 'Parece que el email que ingresaste no esta registrado')
     end
   end
 
