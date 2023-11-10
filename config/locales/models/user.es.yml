@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      user: Proyecto
+      users: Proyectos
+    attributes:
+      user:
+        email: Email
+        username: Nombre de usuario
+        name: Nombre

@@ -1,0 +1,31 @@
+<%= form_with(model: [proyect_user.proyect, proyect_user]) do |form| %>
+  <% if proyect_user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(proyect_user.errors.count, "error") %> prohibited this proyect_user from being saved:</h2>
+
+      <ul>
+        <% proyect_user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.select :user_id, User.all.map{|user| [(user.name || user.email), user.id] }, {include_blank: 'Selecciona un Usuario'},{class: "form-select form-control", required: true} %>
+  </div>
+
+  <div>
+    <%= form.label :role, style: "display: block" %>
+    <%= form.select :role, t("activerecord.attributes.proyect_user.roleses").invert, {include_blank: 'Selecciona un Rol'},{class: "form-select form-control", required: true} %>
+  </div>
+
+  <% if proyect_user.new_record? %>
+    <div class="text-muted mt-3">
+      * Al agregar un usuario al proyecto se le enviara automaticamente una invitacion a su email.
+    </div>
+  <% end %>
+    
+  <%= form.submit "Guardar", class: "btn btn-success w-100 mt-3" %>
+<% end %>

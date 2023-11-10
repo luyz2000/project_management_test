@@ -1,10 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @proyect %>
 
-<div>
-  <%= link_to "Edit this proyect", edit_proyect_path(@proyect) %> |
-  <%= link_to "Back to proyects", proyects_path %>
-
-  <%= button_to "Destroy this proyect", @proyect, method: :delete %>
+<div class="text-center w-100">
+  <div class="btn-group mt-3" role="group">
+    <%= link_to "Editar proyecto", edit_proyect_path(@proyect), class: "btn btn-primary" %>
+    <%= link_to "Editar usuarios del proyecto", proyect_proyect_users_path(@proyect), class: "btn btn-outline-primary" %>
+    <%= link_to "Regresar a proyectos", proyects_path, class: "btn btn-dark" %>
+    <%= button_to "Eliminar Proyecto", @proyect, method: :delete, class: "btn btn-danger", style: "border-bottom-left-radius: 0;border-top-left-radius: 0;" %>
+  </div>
 </div>

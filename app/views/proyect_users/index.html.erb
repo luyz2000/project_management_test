@@ -1,0 +1,33 @@
+<h1 style="line-height: 30px">
+  Usuarios en el proyecto
+  <% if @proyect_users.find{|pu| pu.user_id == current_user.id}&.role != :member %>
+    <%= link_to "Agregar usuario", new_proyect_proyect_user_path, class: "btn btn-success float-end" %>
+  <% end %>
+</h1>
+
+<div id="proyect_users">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      <% @proyect_users.each do |proyect_user| %>
+        <tr>
+          <td><%= proyect_user.user.id%></td>
+          <td><%= proyect_user.user.email%></td>
+          <td><%= proyect_user.user.name%></td>
+          <td><%= t("activerecord.attributes.proyect_user.roleses.#{proyect_user.role}")%></td>
+          <td>
+            <%= link_to "Editar", edit_proyect_proyect_user_path(proyect_user.proyect, proyect_user), class: "btn btn-info text-light" %>
+            <%= button_to "Eliminar", proyect_proyect_user_path(proyect_user.proyect, proyect_user), method: :delete, class: "btn btn-danger", form_class: "d-inline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

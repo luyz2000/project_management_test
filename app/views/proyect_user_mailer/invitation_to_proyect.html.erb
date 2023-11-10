@@ -1,0 +1,5 @@
+<h1>
+  Aqui esta tu enlace para visitar el proyecto
+  <%= @proyect_user.proyect.title %>
+</h1>
+<%= link_to 'Click para ir al proyecto', proyect_url(@proyect_user.proyect), target: :blank %>

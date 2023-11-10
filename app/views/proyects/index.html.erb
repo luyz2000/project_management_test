@@ -1,12 +1,38 @@
-<h1>Proyectos</h1>
+<h1 style="line-height: 30px">
+  Proyectos
+  <%= link_to "Crear proyecto", new_proyect_path, class: "btn btn-success  float-end" %>
+</h1>
+
 
 <div id="proyects">
-  <% @proyects.each do |proyect| %>
-    <%= render proyect %>
-    <p>
-      <%= link_to "Show this proyect", proyect %>
-    </p>
-  <% end %>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Slug</th>
+        <th>Descripcion</th>
+        <th>Estatus</th>
+        <th>Usuarios Asignados</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      <% @proyects.each do |proyect| %>
+        <tr>
+          <td><%= proyect.id%></td>
+          <td><%= proyect.title%></td>
+          <td><%= proyect.slug%></td>
+          <td><%= proyect.description%></td>
+          <td><%= t("activerecord.attributes.proyect.statuses.#{proyect.status}")%></td>
+          <td><%= proyect.users.pluck(:name).join('<br>').html_safe%></td>
+          <td class="w-auto">
+            <%= link_to "Ver", proyect, class: "btn btn-primary" %>
+            <%= link_to "Editar", edit_proyect_path(proyect), class: "btn btn-info text-light" %>
+            <%= button_to "Eliminar", proyect, method: :delete, class: "btn btn-danger", form_class: "d-inline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New proyect", new_proyect_path %>

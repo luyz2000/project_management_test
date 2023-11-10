@@ -3,7 +3,7 @@ class Proyect < ApplicationRecord
   public_constant :STATUSES
   enum status: STATUSES
 
-  has_many :proyect_users
+  has_many :proyect_users, dependent: :destroy
   has_many :users, through: :proyect_users
 
   accepts_nested_attributes_for :proyect_users

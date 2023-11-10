@@ -17,20 +17,23 @@ class TokenLoginsController < ApplicationController
   def new; end
 
   def create
-    return redirect_to(new_session_path(:user),
-                       alert: 'Utiliza el enlace de abajo para ver el preview del email de login')
-
     user = User.find_by(email: user_params[:email])
+
     if user
       user.generate_login_token!
-      TokenLoginMailer.with(user: user).magic_login_email.deliver_later
+      send_token_email(user)
       redirect_to(new_token_login_path, notice: 'Please check your inbox')
     else
       redirect_to(new_token_login_path, alert: 'It looks like that email is not registered')
     end
   end
 
-  private def user_params
+  private
+  def user_params
     params.require(:user).permit(:email)
+  end
+
+  def send_token_email(user)
+    TokenLoginMailer.with(user: user).magic_login_email.deliver_later
   end
 end

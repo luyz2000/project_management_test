@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    models:
+      proyect: Proyecto
+      proyects: Proyectos
+    attributes:
+      proyect:
+        title: Titulo
+        slug: Slug
+        description: Descripcion
+        status: Estatus
+        statuses:
+          inactive: Inactivo
+          progress: En Progreso
+          review: En Revision
+          release: Liberado a Produccion

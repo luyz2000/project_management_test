@@ -1,0 +1,15 @@
+<h1>
+  Agregar nuevo usuario al proyecto:
+  <%= @proyect.title %>
+</h1>
+<div class="row">
+  <div class="col-6">
+    <%= render "form", proyect_user: @proyect_user %>
+  </div>
+</div>
+
+<div class="text-center w-100">
+  <div class="btn-group mt-3" role="group">
+    <%= link_to "Regresar a los participantes del proyecto", proyect_proyect_users_path, class: "btn btn-dark" %>
+  </div>
+</div>

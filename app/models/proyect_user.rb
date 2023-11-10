@@ -3,7 +3,8 @@ class ProyectUser < ApplicationRecord
   public_constant :ROLE
   enum role: ROLE
 
-  validates :role, uniqueness: { scope: :proyect_id }
+  validates :role, uniqueness: { scope: :proyect_id }, if: -> { owner? }
+  validates :user_id, uniqueness: { scope: :proyect_id }, on: :create
 
   belongs_to :user
   belongs_to :proyect

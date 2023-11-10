@@ -1,17 +1,10 @@
-<h2>Iniciar sesion</h2>
+<h1 class="text-center">Iniciar sesion</h1>
 
-<%= form_for(User.new, url: token_logins_url, method: :post) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.submit 'Enviar enlace de login' %>
-<% end %>
-
-<%= link_to "Registrarse", new_registration_path(resource_name) %><br />
-
-<% unless User.all.size.zero? %>
-  <div class="mt-5">
-    Has click para ver el preview del email que te llegaria de tener un servidor de emails configurado...
-    <br>
-    <%= link_to "Email preview para el 1 usuario registrado", "http://localhost:3000/rails/mailers/token_login_mailer", class: "link-success" %>
+<%= form_for(User.new, url: token_logins_url, method: :post, html: {class: "row justify-content-center"}) do |f| %>
+  <div class="col-4">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control", required: true %>
+    <%= f.submit 'Enviar enlace de login', class: "btn btn-success mt-3 w-100" %>
+    <%= link_to "Registrarse", new_registration_path(resource_name), class: "btn btn-outline-success mt-3 w-100" %><br />
   </div>
 <% end %>

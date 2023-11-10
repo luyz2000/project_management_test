@@ -1,0 +1,24 @@
+es:
+  activerecord:
+    models:
+      proyect_user: Proyectos de usuarios
+      proyect_users: Proyectos de usuarios
+    attributes:
+      proyect_user:
+        user: Usuario
+        proyect: Proyecto
+        role: Rol
+        roleses:
+          member: Miembro
+          administrator: Administrador
+          owner: Propietario
+    errors:
+      models:
+        proyect_user:
+          attributes:
+            user_id:
+              taken: el usuario ya se encuentra asignado al proyecto
+  errors:
+    attributes:
+      role:
+        taken: ya esta en uso

@@ -1,10 +1,13 @@
-<h1>Editing proyect</h1>
-
-<%= render "form", proyect: @proyect %>
-
-<br>
-
-<div>
-  <%= link_to "Show this proyect", @proyect %> |
-  <%= link_to "Back to proyects", proyects_path %>
+<h1>Editar Proyecto</h1>
+<div class="row">
+  <div class="col-6">
+    <%= render "form", proyect: @proyect %>
+  </div>
+</div>
+<div class="text-center w-100">
+  <div class="btn-group mt-3" role="group">
+    <%= link_to "Ver proyecto", @proyect, class: "btn btn-primary" %>
+    <%= link_to "Editar usuarios del proyecto", proyect_proyect_users_path(@proyect), class: "btn btn-outline-primary" %>
+    <%= link_to "Regresar a proyectos", proyects_path, class: "btn btn-dark" %>
+  </div>
 </div>

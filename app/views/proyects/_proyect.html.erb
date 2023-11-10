@@ -1,32 +1,61 @@
 <div id="<%= dom_id proyect %>">
-  <p>
-    <strong>Title:</strong>
-    <%= proyect.title %>
-  </p>
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-primary">
+          <h3>Proyecto</h3>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold d-inline">
+            Titulo:
+          </div>
+          <%= proyect.title %>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold d-inline">
+            Slug:
+          </div>
+          <%= proyect.slug %>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold d-inline">
+            Descripcion:
+          </div>
+          <%= proyect.description %>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold d-inline">
+            Estatus:
+          </div>
+          <%= t("activerecord.attributes.proyect.statuses.#{proyect.status}")%>
+        </li>
+      </ul>
+    </div>
 
-  <p>
-    <strong>Slug:</strong>
-    <%= proyect.slug %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= proyect.description %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= proyect.status %>
-  </p>
-
-  <p>
-    <strong>Users:</strong>
-    <% proyect.proyect_users.each do |proyect_user| %>
-      <div class="d-block">
-        <%= proyect_user.user.email %>
-        <%= proyect_user.role %>
-      </div>
-    <% end %>
-  </p>
-
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-info">
+          <h3>Usuarios Asignados al proyecto</h3>
+        </li>
+        <% proyect.proyect_users.each do |proyect_user| %>
+          <li class="list-group-item">
+            <div class="fw-bold d-inline">
+              Email:
+            </div>
+            <%= proyect_user.user.email %>
+            <br>
+            <div class="fw-bold d-inline">
+              Nombre:
+            </div>
+            <%= proyect_user.user.name %>
+            <br>
+            <div class="fw-bold d-inline">
+              Rol:
+            </div>
+            <%= proyect_user.role %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
