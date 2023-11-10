@@ -7,7 +7,9 @@
 <div class="text-center w-100">
   <div class="btn-group mt-3" role="group">
     <%= link_to "Ver proyecto", @proyect, class: "btn btn-primary" %>
-    <%= link_to "Editar usuarios del proyecto", proyect_proyect_users_path(@proyect), class: "btn btn-outline-primary" %>
+    <% unless @proyect.proyect_users.find_by(user: current_user).member?%>
+      <%= link_to "Editar usuarios del proyecto", proyect_proyect_users_path(@proyect), class: "btn btn-outline-primary" %>
+    <% end %>
     <%= link_to "Regresar a proyectos", proyects_path, class: "btn btn-dark" %>
   </div>
 </div>

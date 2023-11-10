@@ -28,8 +28,12 @@
           <td><%= proyect.users.pluck(:name).join('<br>').html_safe%></td>
           <td class="w-auto">
             <%= link_to "Ver", proyect, class: "btn btn-primary" %>
-            <%= link_to "Editar", edit_proyect_path(proyect), class: "btn btn-info text-light" %>
-            <%= button_to "Eliminar", proyect, method: :delete, class: "btn btn-danger", form_class: "d-inline" %>
+            <% unless proyect.proyect_users.find_by(user: current_user).member?%>
+              <%= link_to "Editar", edit_proyect_path(proyect), class: "btn btn-info text-light" %>
+            <% end %>
+            <% if proyect.owner == current_user %>
+              <%= button_to "Eliminar", proyect, method: :delete, class: "btn btn-danger", form_class: "d-inline" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
